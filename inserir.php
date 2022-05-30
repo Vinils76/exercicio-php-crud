@@ -1,3 +1,25 @@
+<?php
+require_once '../src/funcoes-alunos.php';
+
+if ( isset($_POST['inserir']) ){
+    
+
+    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $primeira = filter_input(INPUT_POST, 'primeira', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+    $segunda = filter_input(INPUT_POST, 'segunda', FILTER_SANITIZE_NUMBER_INT);
+
+    $media = ($primeira + $segunda)/2;
+
+    $situacao = $media>=7?"aprovado":"reprovado";
+
+	inserirAluno($conexao, $nome, $primeira, $segunda, $media, $situacao);
+
+    header("location:visualizar.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,13 +37,13 @@
 
 	<form action="#" method="post">
 	    <p><label for="nome">Nome:</label>
-	    <input type="text" id="nome" required></p>
+	    <input type="text" name="nome" id="nome" required></p>
         
       <p><label for="primeira">Primeira nota:</label>
-	    <input type="number" id="primeira" step="0.1" min="0.0" max="10" required></p>
+	    <input type="number" name="primeira" id="primeira" step="0.1" min="0.0" max="10" required></p>
 	    
 	    <p><label for="segunda">Segunda nota:</label>
-	    <input type="number" id="segunda" step="0.1" min="0.0" max="10" required></p>
+	    <input type="number" name="segunda" id="segunda" step="0.1" min="0.0" max="10" required></p>
 	    
       <button>Cadastrar aluno</button>
 	</form>
