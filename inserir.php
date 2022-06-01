@@ -1,14 +1,14 @@
 <?php
-require_once '../src/funcoes-alunos.php';
+require_once '../exercicio-php-crud/src/funcoes-alunos.php';
 
-if ( isset($_POST['inserir']) ){
+if ( isset($_POST['cadastrar']) ){
     
 
     $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
 
     $primeira = filter_input(INPUT_POST, 'primeira', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
-    $segunda = filter_input(INPUT_POST, 'segunda', FILTER_SANITIZE_NUMBER_INT);
+    $segunda = filter_input(INPUT_POST, 'segunda', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
     $media = ($primeira + $segunda)/2;
 
@@ -45,7 +45,7 @@ if ( isset($_POST['inserir']) ){
 	    <p><label for="segunda">Segunda nota:</label>
 	    <input type="number" name="segunda" id="segunda" step="0.1" min="0.0" max="10" required></p>
 	    
-      <button>Cadastrar aluno</button>
+      <button type="submit" name="cadastrar">Cadastrar aluno</button>
 	</form>
 
     <hr>

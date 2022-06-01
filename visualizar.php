@@ -1,6 +1,5 @@
-<?php
-require_once "../src/funcoes-alunos.php";
-$listaDeAlunos = leralunos($conexao);
+<?php require_once "../exercicio-php-crud/src/funcoes-alunos.php";
+$listaDeAlunos = lerAlunos($conexao);
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +47,8 @@ as páginas de atualização e exclusão. -->
             <td><?=$alunos['segundaNota']?></td>
             <td><?=$alunos['media']?></td>
             <td><?=$alunos['situacao']?></td>
-            <td> <a href="atualizar.php?id=<?=$alunos['idaluno']?>">atualizar</a></td>
-            <td> <a href="excluir.php?id=<?=$alunos['idaluno']?>">excluir</a></td>
+            <td> <a href="atualizar.php?id=<?=$alunos['id']?>">atualizar</a></td>
+            <td> <a href="excluir.php?id=<?=$alunos['id']?>" class="excluir">excluir</a></td>
         </tr>
 
         <?php
@@ -57,6 +56,8 @@ as páginas de atualização e exclusão. -->
         ?>
     </tbody>
 </table>
+
+<script src="../exercicio-php-crud/js/script.js"></script>
 
 
     <p><a href="index.php">Voltar ao início</a></p>

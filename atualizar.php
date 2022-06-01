@@ -1,3 +1,30 @@
+<?php require_once "../exercicio-php-crud/src/funcoes-alunos.php";
+$listaDeAlunos = lerAlunos($conexao);
+
+$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+
+$aluno = lerUmAluno($conexao, $id);
+
+if ( isset($_POST['atualizar-dados']) ){
+    
+
+    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $primeira = filter_input(INPUT_POST, 'primeira', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+    $segunda = filter_input(INPUT_POST, 'segunda', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+    $media = ($primeira + $segunda)/2;
+
+    $situacao = $media>=7?"aprovado":"reprovado";
+
+	atualizarAluno($conexao, $id, $nome, $primeira, $segunda, $media, $situacao);
+
+    header("location:visualizar.php");
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,13 +43,13 @@
     <form action="#" method="post">
         
 	    <p><label for="nome">Nome:</label>
-	    <input type="text" name="nome" id="nome" required></p>
+	    <input value="<?=$aluno['nome']?>" type="text" name="nome" id="nome" required></p>
         
         <p><label for="primeira">Primeira nota:</label>
-	    <input name="primeira" type="number" id="primeira" step="0.1" min="0.0" max="10" required></p>
+	    <input value="<?=$aluno['primeiraNota']?>" name="primeira" type="number" id="primeira" step="0.1" min="0.0" max="10" required></p>
 	    
 	    <p><label for="segunda">Segunda nota:</label>
-	    <input name="segunda" type="number" id="segunda" step="0.1" min="0.0" max="10" required></p>
+	    <input value="<?=$aluno['segundaNota']?>" name="segunda" type="number" id="segunda" step="0.1" min="0.0" max="10" required></p>
 
         <p>
         <!-- Campo somente leitura e desabilitado para edição.
@@ -38,7 +65,7 @@
 	        <input type="text" name="situacao" id="situacao" readonly disabled>
         </p>
 	    
-        <button name="atualizar-dados">Atualizar dados do aluno</button>
+        <button type="submit" name="atualizar-dados">Atualizar dados do aluno</button>
 	</form>    
     
     <hr>
