@@ -8,6 +8,12 @@ $listaDeAlunos = lerAlunos($conexao);
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lista de alunos - Exercício CRUD com PHP e MySQL</title>
+
+<!-- CSS E JS bootstrap -->
+<link rel="stylesheet" href="bootstrap-5.2.0-beta1-dist/css/bootstrap.css">
+
+
+<!-- CSS próprio -->
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -22,8 +28,8 @@ para exibir a relação de alunos existentes no banco de dados.
 Obs.: não se esqueça de criar também os links dinâmicos para
 as páginas de atualização e exclusão. -->
 
-<table>
-    <caption>Alunos</caption>
+<table class="table table-bordered border-primary text-center">
+    
     <thead>
         <tr>
             <th>Id</th>
@@ -46,9 +52,12 @@ as páginas de atualização e exclusão. -->
             <td><?=$alunos['primeiraNota']?></td>
             <td><?=$alunos['segundaNota']?></td>
             <td><?=$alunos['media']?></td>
-            <td><?=$alunos['situacao']?></td>
-            <td> <a href="atualizar.php?id=<?=$alunos['id']?>">atualizar</a></td>
-            <td> <a href="excluir.php?id=<?=$alunos['id']?>" class="excluir">excluir</a></td>
+            <?php if($alunos['media']>=7) { ?><td class="text-success"><?=$alunos['situacao']?></td>
+                <?php } else { ?>
+                    <td class="text-danger"><?=$alunos['situacao']?></td>
+                    <?php } ?>
+            <td class="col-1"> <a href="atualizar.php?id=<?=$alunos['id']?>" class="text-primary">atualizar</a></td>
+            <td class="col-1"> <a href="excluir.php?id=<?=$alunos['id']?>" class="excluir text-danger">excluir</a></td>
         </tr>
 
         <?php
@@ -57,11 +66,12 @@ as páginas de atualização e exclusão. -->
     </tbody>
 </table>
 
-<script src="../exercicio-php-crud/js/script.js"></script>
+
 
 
     <p><a href="index.php">Voltar ao início</a></p>
 </div>
-
+<script src="js/script.js"></script>
+<script src="bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>

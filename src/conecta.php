@@ -3,9 +3,9 @@
 
 //Parâmetros
 $servidor = "localhost";
-$usuario = "root";
-$senha = ""; // String vazia somente no xampp
-$banco = "crud_escola_antonio";
+$usuario = "webmaio1_antonio";
+$senha = "Vini7670"; // String vazia somente no xampp
+$banco = "webmaio1_antonio";
 
 try {
 // Criando a conexão com o MySQL (API/Driver de conexão)

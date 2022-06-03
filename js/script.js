@@ -1,7 +1,7 @@
-const links = document.querySelector('excluir');
+const links = document.querySelectorAll('.excluir').value;
 
-for (let i = 0; i < links.length; i++) {
-    links[i].addEventListener("click", function(event) {
+for (let i = 0; i < links.length; i++){
+    links[i].addEventListener("click", function(event){   
 
         event.preventDefault();
 
