@@ -7,6 +7,10 @@ $usuario = "webmaio1_antonio";
 $senha = "Vini7670"; // String vazia somente no xampp
 $banco = "webmaio1_antonio";
 
+/* $usuario = "root";
+$senha = "";
+$banco = "crud_escola_antonio"; */
+
 try {
 // Criando a conexão com o MySQL (API/Driver de conexão)
 $conexao = new PDO(
